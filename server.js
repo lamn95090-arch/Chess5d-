@@ -92,8 +92,8 @@ wss.on('connection', (ws) => {
       return;
     }
 
-    // Forward game messages (move, resign, chat, state, etc.)
-    if (myRoom && (msg.type === 'move' || msg.type === 'resign' || msg.type === 'chat' || msg.type === 'sync' || msg.type === 'ready')) {
+    // Forward mọi tin nhắn game giữa 2 người trong phòng (move, submit, resign...)
+    if (myRoom && msg.type && msg.type !== 'create' && msg.type !== 'join') {
       const room = rooms.get(myRoom);
       if (!room) return;
       msg.from = myId;
